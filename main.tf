@@ -1,8 +1,4 @@
-resource "ibm_compute_ssh_key" "ssh_key" {
-  label      = "${var.ssh_label}"
-  notes      = "${var.ssh_notes}"
-  public_key = "${var.ssh_key}"
-}
+
 
 ########################################################
 # Create VM configured to for SSH remote access
@@ -13,7 +9,7 @@ resource "ibm_compute_vm_instance" "webapp1" {
   domain            = "wcpcloud.com"
   hostname          = "remotex"
   count             = 1
-  ssh_key_ids       = ["${ibm_compute_ssh_key.ssh_key.id}"]
+  ssh_key_ids       = ["${ssh_public_key.id}"]
   os_reference_code = "CENTOS_LATEST_64"
   flavor_key_name   = "B1_1X4X100"
   local_disk        = false
