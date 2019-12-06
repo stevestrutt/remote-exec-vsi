@@ -9,7 +9,7 @@ resource "ibm_compute_vm_instance" "webapp1" {
   domain            = "wcpcloud.com"
   hostname          = "remotex"
   count             = 1
-  ssh_key_ids       = ["${ssh_public_key.id}"]
+  ssh_key_ids       = ["${ibm_compute_ssh_key.remote-exec.id}"]
   os_reference_code = "CENTOS_LATEST_64"
   flavor_key_name   = "B1_1X4X100"
   local_disk        = false
@@ -34,3 +34,7 @@ resource "ibm_compute_vm_instance" "webapp1" {
 # data "ibm_resource_group" "group" {
 #   name = "Default"
 # }
+
+resource "ibm_compute_ssh_key" "remote-exec" {
+  public_key = "${var.ssh_public_key}"
+}
