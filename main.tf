@@ -37,4 +37,6 @@ resource "ibm_compute_vm_instance" "webapp1" {
 
 resource "ibm_compute_ssh_key" "remote-exec" {
   public_key = "${var.ssh_public_key}"
+  label      = "${var.ssh_label}"
+  notes      = "${var.ssh_notes}"
 }
