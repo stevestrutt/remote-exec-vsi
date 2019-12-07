@@ -1,0 +1,148 @@
+[0mibm_compute_ssh_key.ssh_key:
+  id = 1657826
+  fingerprint = 03:09:60:36:01:58:6c:6f:35:e5:cf:ce:62:40:88:d0
+  label = wcpclouduk1
+  notes = SSH key for remote access to web site
+  public_key = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC7tdyXcE+C+CljZY36Fl76j4yg+BvLkBVnqo0zVOn8O3NFxD/LNNwGFAJ+6Q9EByIp6D4vXQNCA2t4YmswzL5oSwEq2X+xMNEcSyH0esHiZF3LwndKxbGMYyJcSXiHCbYBr4mOpmE2DqehhlJ6T7r2+PCUQwGSRuCb2o+6TtEpQevuXzTQmDp9/1JN9BXZc2FFTwULZrYnwGWjeiBgnvnx056cxfY6K+D1h0+1V4fqDbG6VGBMiKt+k8tWnM26e5B9nvFAfic76zdn/wBHQlP6Dr7UQNSdnZC2k2NkeJ1E0wVXKYNdAaf9tWoUlawRyAG+5YFrNYQ8Epifud+JZ6DG8IpL4tPtLKJzKtZheeYE6FnAzjnn1PFgBeXOeVLxa0zxBw7DUihzC6KdXwTvDhMh3GheDDQ15h5boPJCdhTxEGFDQDul/gycv6U1dwaaYZnwaCn0bXZZ+K8kLoAuBttGYWyCV3+jMktYIt70feFL/gtInl49bD0l3Jy0iEYrignmliEP8yd3B13SWPH83o4mpTxZNCt6Q5/roiK9Zw9HlLGz/QJtkfv7JtRliXiP2RacugtvieHJ9Bn5RhutPjGWzWbfUXAYzpQTcnx4Nudn5bFTN81txhzNv7IbdojL4G+zzlVv+RPfhNmWrvVfsNY4bKNn4q7I9ngmaPkU4d+xEw== steve_strutt@uk.ibm.com
+ibm_compute_vm_instance.webapp1: (tainted)
+  id = 93858480
+  block_storage_ids.# = 0
+  cores = 1
+  datacenter = lon06
+  dedicated_acct_host_only = false
+  disks.# = 0
+  domain = wcpcloud.com
+  file_storage_ids.# = 0
+  flavor_key_name = B1_1X4X100
+  hostname = remotex
+  hourly_billing = true
+  ip_address_id = 144541076
+  ip_address_id_private = 144541110
+  ipv4_address = 158.176.131.42
+  ipv4_address_private = 10.72.230.67
+  ipv6_enabled = false
+  ipv6_static_enabled = false
+  local_disk = false
+  memory = 4096
+  network_speed = 100
+  notes = 
+  os_reference_code = CENTOS_LATEST_64
+  private_interface_id = 60923696
+  private_network_only = false
+  private_security_group_ids.# = 1
+  private_security_group_ids.2238440 = 2238440
+  private_subnet = 10.72.230.64/26
+  private_subnet_id = 2250344
+  private_vlan_id = 2762998
+  public_bandwidth_unlimited = false
+  public_interface_id = 60923698
+  public_security_group_ids.# = 1
+  public_security_group_ids.2238370 = 2238370
+  public_subnet = 158.176.131.32/28
+  public_subnet_id = 2096145
+  public_vlan_id = 2762996
+  secondary_ip_addresses.# = 0
+  ssh_key_ids.# = 1
+  ssh_key_ids.1657826 = 1657826
+  tags.# = 3
+  tags.1483959641 = stevestrutt
+  tags.2297720378 = awx
+  tags.3318512289 = ansible
+  transient = false
+  wait_time_minutes = 90
+ibm_security_group.sg_private_lamp:
+  id = 2238440
+  description = Private access for LAMP stack
+  name = sg_private_lamp
+ibm_security_group.sg_public_lamp:
+  id = 2238370
+  description = Public access for LAMP stack to repos
+  name = sg_public_lamp
+ibm_security_group_rule.dns:
+  id = 6814486
+  direction = egress
+  ether_type = IPv4
+  port_range_max = 53
+  port_range_min = 53
+  protocol = udp
+  remote_ip = 10.0.0.0/8
+  security_group_id = 2238440
+ibm_security_group_rule.http:
+  id = 6814566
+  direction = egress
+  ether_type = IPv4
+  port_range_max = 80
+  port_range_min = 80
+  protocol = tcp
+  remote_ip = 10.0.0.0/8
+  security_group_id = 2238440
+ibm_security_group_rule.http-in:
+  id = 6814658
+  direction = ingress
+  ether_type = IPv4
+  port_range_max = 80
+  port_range_min = 80
+  protocol = tcp
+  remote_ip = 10.0.0.0/8
+  security_group_id = 2238440
+ibm_security_group_rule.http-pub:
+  id = 6814394
+  direction = egress
+  ether_type = IPv4
+  port_range_max = 80
+  port_range_min = 80
+  protocol = tcp
+  security_group_id = 2238370
+ibm_security_group_rule.https:
+  id = 6814390
+  direction = egress
+  ether_type = IPv4
+  port_range_max = 443
+  port_range_min = 443
+  protocol = tcp
+  remote_ip = 10.0.0.0/8
+  security_group_id = 2238440
+ibm_security_group_rule.https-in:
+  id = 6814392
+  direction = ingress
+  ether_type = IPv4
+  port_range_max = 443
+  port_range_min = 443
+  protocol = tcp
+  remote_ip = 10.0.0.0/8
+  security_group_id = 2238440
+ibm_security_group_rule.https-pub:
+  id = 6814484
+  direction = egress
+  ether_type = IPv4
+  port_range_max = 443
+  port_range_min = 443
+  protocol = tcp
+  security_group_id = 2238370
+ibm_security_group_rule.icmp:
+  id = 6814568
+  direction = ingress
+  ether_type = IPv4
+  port_range_max = 8
+  port_range_min = 8
+  protocol = icmp
+  remote_ip = 10.0.0.0/8
+  security_group_id = 2238440
+ibm_security_group_rule.ssh:
+  id = 6814388
+  direction = ingress
+  ether_type = IPv4
+  port_range_max = 22
+  port_range_min = 22
+  protocol = tcp
+  remote_ip = 10.0.0.0/8
+  security_group_id = 2238440
+ibm_security_group_rule.ssh-pub:
+  id = 6814210
+  direction = ingress
+  ether_type = IPv4
+  port_range_max = 22
+  port_range_min = 22
+  protocol = tcp
+  security_group_id = 2238370
+[0m[0m

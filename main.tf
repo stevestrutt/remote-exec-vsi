@@ -30,7 +30,7 @@ resource "ibm_compute_vm_instance" "webapp1" {
   }
 
   provisioner "local-exec" {
-    command = "terraform state pull"
+    command = "terraform show >> state.log"
   }
 
 }
