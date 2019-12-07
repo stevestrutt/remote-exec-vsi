@@ -17,5 +17,10 @@ variable ssh_private_key {
 }
 
 
+variable ssh_notes {
+  description = "ssh public key notes"
+  default     = "SSH key for remote access to web site"
+}
+
 
 
