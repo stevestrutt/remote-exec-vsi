@@ -29,6 +29,10 @@ resource "ibm_compute_vm_instance" "webapp1" {
     script = "update.sh"
   }
 
+  provisioner "local-exec" {
+    command = "terraform state pull"
+  }
+
 }
 
 # data "ibm_resource_group" "group" {
