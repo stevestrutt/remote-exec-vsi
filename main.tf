@@ -33,6 +33,10 @@ resource "ibm_compute_vm_instance" "webapp1" {
     command = "terraform show >> state.log"
   }
 
+  provisioner "local-exec" {
+    command = "cat state.log"
+  }
+
 }
 
 # data "ibm_resource_group" "group" {
