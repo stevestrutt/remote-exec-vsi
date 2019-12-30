@@ -1,5 +1,3 @@
-
-
 ########################################################
 # Create VM configured to for SSH remote access
 ########################################################
@@ -18,10 +16,10 @@ resource "ibm_compute_vm_instance" "webapp1" {
   public_security_group_ids  = ["${ibm_security_group.sg_public_lamp.id}"]
   private_network_only       = false
 
-  tags = ["stevestrutt",  "ansible", "awx"]
+  tags = ["stevestrutt", "ansible", "awx"]
 
   connection {
-    user = "root"
+    user        = "root"
     private_key = "${var.ssh_private_key}"
   }
 
@@ -36,7 +34,6 @@ resource "ibm_compute_vm_instance" "webapp1" {
   provisioner "local-exec" {
     command = "cat state.log"
   }
-
 }
 
 # data "ibm_resource_group" "group" {
@@ -47,4 +44,8 @@ resource "ibm_compute_ssh_key" "remote-exec" {
   public_key = "${var.ssh_public_key}"
   label      = "${var.ssh_label}"
   notes      = "${var.ssh_notes}"
+}
+
+output "Hostname" {
+  value = "${ibm_compute_vm_instance.webapp1.hostname}"
 }
