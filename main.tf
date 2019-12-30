@@ -46,6 +46,10 @@ resource "ibm_compute_ssh_key" "remote-exec" {
   notes      = "${var.ssh_notes}"
 }
 
-output "Hostname" {
+output "hostname" {
   value = "${ibm_compute_vm_instance.webapp1.hostname}"
+}
+
+output "public_ip" {
+  value = "${ibm_compute_vm_instance.webapp1.ipv4_address}"
 }
